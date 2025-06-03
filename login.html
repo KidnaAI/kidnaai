@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login to Kindaai</title>
+  
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCTV2ggyAdBg3yjr9zPOrMeppmNoXm1lVI",
+    authDomain: "kidnaai.firebaseapp.com",
+    projectId: "kidnaai",
+    storageBucket: "kidnaai.firebasestorage.app",
+    messagingSenderId: "527842055273",
+    appId: "1:527842055273:web:c276df59df516206517ef8",
+    measurementId: "G-W2Z2VDM0HT"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
+
+  <script>
+    function loginWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then(result => {
+          window.location.href = "index.html";
+        })
+        .catch(error => {
+          alert("Login failed: " + error.message);
+        });
+    }
+  </script>
+</head>
+<body>
+  <h2>Login to Kindaai</h2>
+  <button onclick="loginWithGoogle()">Login with Google</button>
+</body>
+</html>

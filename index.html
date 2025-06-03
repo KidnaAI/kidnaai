@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kindaai - Home</title>
+  
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyCTV2ggyAdBg3yjr9zPOrMeppmNoXm1lVI",
+    authDomain: "kidnaai.firebaseapp.com",
+    projectId: "kidnaai",
+    storageBucket: "kidnaai.firebasestorage.app",
+    messagingSenderId: "527842055273",
+    appId: "1:527842055273:web:c276df59df516206517ef8",
+    measurementId: "G-W2Z2VDM0HT"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+</script>
+
+  <script>
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+  </script>
+</head>
+<body>
+  <h1>Welcome to Kindaai 🎉</h1>
+  <p>You are logged in!</p>
+  <button onclick="logout()">Logout</button>
+  <script src="logout.js"></script>
+</body>
+</html>
