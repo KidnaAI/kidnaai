@@ -1,36 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Kindaai - Home</title>
-  
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyCTV2ggyAdBg3yjr9zPOrMeppmNoXm1lVI",
-    authDomain: "kidnaai.firebaseapp.com",
-    projectId: "kidnaai",
-    storageBucket: "kidnaai.firebasestorage.app",
-    messagingSenderId: "527842055273",
-    appId: "1:527842055273:web:c276df59df516206517ef8",
-    measurementId: "G-W2Z2VDM0HT"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-</script>
+  <title>KindaAI Home</title>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
 
   <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyCTV2ggyAdBg3yjr9zPOrMeppmNoXm1lVI",
+      authDomain: "kidnaai.firebaseapp.com",
+      projectId: "kidnaai",
+      storageBucket: "kidnaai.firebasestorage.app",
+      messagingSenderId: "527842055273",
+      appId: "1:527842055273:web:c276df59df516206517ef8",
+      measurementId: "G-W2Z2VDM0HT"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // পেজ লোডে ইউজার চেক করো
     auth.onAuthStateChanged(user => {
       if (!user) {
+        // যদি লগইন না করে, তাহলে login.html এ পাঠাও
         window.location.href = "login.html";
       }
     });
+
+    // লগআউট ফাংশন
+    function logout() {
+      auth.signOut()
+        .then(() => {
+          window.location.href = "login.html";
+        })
+        .catch(error => {
+          alert("Logout failed: " + error.message);
+        });
+    }
   </script>
 </head>
 <body>
-  <h1>Welcome to Kindaai 🎉</h1>
+  <h1>Welcome to KindaAI 🎉</h1>
   <p>You are logged in!</p>
   <button onclick="logout()">Logout</button>
-  <script src="logout.js"></script>
 </body>
 </html>
